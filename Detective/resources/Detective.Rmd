@@ -1,0 +1,116 @@
+---
+title: "Crime Notebook"
+output: html_notebook
+---
+OBJECTIVE:
+AN ANALYTICAL DETECTIVE
+Crime is an international concern, but it is documented and handled in very different ways in different countries. In the United States, violent crimes and property crimes are recorded by the Federal Bureau of Investigation (FBI). Additionally, each city documents crime, and some cities release data regarding crime rates. The city of Chicago, Illinois releases crime data from 2001 onward online.
+
+What is the local language?
+```{r}
+Sys.getlocale()
+```
+Change the local to English
+```{r}
+Sys.setlocale("LC_ALL","English")
+```
+
+
+Useful libraries
+
+```{r}
+library("dplyr")
+library("ggplot2")
+```
+
+Read the dataset mvtWeek1.csv into R, using the read.csv function, and call the data frame "mvt". Remember to navigate to the directory on your computer containing the file mvtWeek1.csv first. It may take a few minutes to read in the data, since it is pretty large. Then, use the str and summary functions to answer the following questions
+
+```{r}
+# import data
+data <- read.csv("../data/mvtWeek1.csv")
+
+# create data frame
+mvt <- tbl_df(data)
+
+# Analyse data
+head(mvt)
+```
+
+LOADING THE DATA 
+How many rows of data (observations) are in this dataset?
+
+```{r}
+N = nrow(mvt)
+L = ncol(mvt)
+str(df)
+```
+Using the "max" function, what is the maximum value of the variable "ID"?
+
+```{r}
+max(mvt$ID)
+```
+
+What is the minimum value of the variable "Beat"?
+
+```{r}
+min(mvt$Beat)
+```
+
+Simplification
+
+```{r}
+ summary(mvt)
+```
+
+How many observations have a LocationDescription value of ALLEY?
+```{r}
+summary(mvt$LocationDescription)
+```
+
+In many datasets, like this one, you have a date field. Unfortunately, R does not automatically recognize entries that look like dates. We need to use a function in R to extract the date and time. Take a look at the first entry of Date (remember to use square brackets when looking at a certain entry of a variable).
+
+In what format are the entries in the variable Date?
+```{r}
+head(mvt)
+```
+
+first line: 12/31/12 23:15
+Answer -> Month/Day/Year Hour:Minute
+
+let's convert these characters into a Date object in R
+
+```{r}
+DateConvert =  as.Date(strptime(mvt$Date, "%m/%d/%y %H:%M"))
+```
+
+This converts the variable "Date" into a Date object in R. Take a look at the variable DateConvert using the summary function.
+What is the month and year of the median date in our dataset? Enter your answer as "Month Year", without the quotes. (Ex: if the answer was 2008-03-28, you would give the answer "March 2008", without the quotes.)
+
+
+```{r}
+summary(DateConvert)
+```
+
+2006-05-21 Gives May 2006
+UNDERSTANDING DATES IN R 
+let's extract the month and the day of the week, and add these variables to our data frame 
+
+
+```{r}
+mvt$Month = months(DateConvert)
+mvt$Weekday = weekdays(DateConvert)
+```
+
+This creates two new variables in our data frame, Month and Weekday, and sets them equal to the month and weekday values that we can extract from the Date object. Lastly, replace the old Date variable with DateConvert by typing:
+
+```{r}
+mvt$Date = DateConvert
+```
+
+Using the table command, answer the following questions.
+In which month did the fewest motor vehicle thefts occur?
+
+```{r}
+sort(table(mvt$Month))
+```
+
