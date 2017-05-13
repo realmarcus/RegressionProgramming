@@ -161,4 +161,24 @@ Now, let's see how arrests have changed over time. Create a boxplot of the varia
 (which are plotted as circles). Outliers are defined by first computing the difference between the first and third quartile values, or the height of the box. This number is called the Inter-Quartile Range (IQR). Any point that is greater than the third quartile plus the IQR or less than the first quartile minus the IQR is considered an outlier.
 Does it look like there were more crimes for which arrests were made in the first half of the time period or the second half of the time period? (Note that the time period is from 2001 to 2012, so the middle of the time period is the beginning of 2007.)
 
+```{r}
+boxplot(Date~Arrest,data = mvt)
+```
+
+Let's investigate this further. Use the table function for the next few questions.
+For what proportion of motor vehicle thefts in 2001 was an arrest made?
+Note: in this question and many others in the course, we are asking for an answer as a proportion. Therefore, your answer should take a value between 0 and 1.
+
+Method 1:
+```{r}
+table(mvt$Arrest,mvt$Year)
+2152/(2152+18517)
+```
+
+Method 2: group by year, summarise and arrest then compute proportions
+
+```{r}
+mvt_byYear <- group_by(mvt,Year)
+mvt_byYear %>%  summarise(N = n()) %>% select(N,Arrest) -> mvt_prop
+```
 
