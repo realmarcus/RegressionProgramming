@@ -114,3 +114,51 @@ In which month did the fewest motor vehicle thefts occur?
 sort(table(mvt$Month))
 ```
 
+On which weekday did the most motor vehicle thefts occur?
+
+```{r}
+sort(table(mvt$Weekday))
+```
+
+Each observation in the dataset represents a motor vehicle theft, and the Arrest variable indicates whether an arrest was later made for this theft. 
+
+Which month has the largest number of motor vehicle thefts for which an arrest was made?
+
+Method 1:
+
+```{r}
+table(mvt$Month,mvt$Arrest)
+```
+
+Method 2:
+Group by month, by arrest
+TBD
+
+```{r}
+by_MonthArrest <- group_by(mvt,Month,Arrest)
+by_MonthArrest %>%  summarise(N = n()) %>% 
+  select(Month,Arrest,N) %>%
+  filter(Arrest == TRUE) -> df_N
+df_N
+```
+
+VISUALIZING CRIME TRENDS 
+
+Now, let's make some plots to help us better understand how crime has changed over time in Chicago. Throughout this problem, and in general, you can save your plot to a file. For more information, this website very clearly explains the process.
+First, let's make a histogram of the variable Date. We'll add an extra argument, to specify the number of bars we want in our histogram. In your R console, type
+
+```{r}
+hist(mvt$Date,breaks = 100,xlab = "Date")
+```
+
+Analysis:
+In general, does it look like crime increases or decreases from 2002 - 2012? DECREASES
+In general, does it look like crime increases or decreases from 2005 - 2008? INCREASES
+
+
+Now, let's see how arrests have changed over time. Create a boxplot of the variable "Date", sorted by the variable "Arrest" (if you are not familiar with boxplots and would like to learn more, check out this tutorial). In a boxplot, the bold horizontal line is the median value of the data, the box shows the range of values between the first quartile and third quartile, and the whiskers (the dotted lines extending outside the box) show the minimum and maximum values, excluding any outliers
+
+(which are plotted as circles). Outliers are defined by first computing the difference between the first and third quartile values, or the height of the box. This number is called the Inter-Quartile Range (IQR). Any point that is greater than the third quartile plus the IQR or less than the first quartile minus the IQR is considered an outlier.
+Does it look like there were more crimes for which arrests were made in the first half of the time period or the second half of the time period? (Note that the time period is from 2001 to 2012, so the middle of the time period is the beginning of 2007.)
+
+
