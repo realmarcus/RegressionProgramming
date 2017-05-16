@@ -1,6 +1,6 @@
 ---
 title: "Demographics Notebook"
-output: html_notebook
+output: rmarkdown::github_document
 ---
 ## OBJECTIVE:
 In the wake of the Great Recession of 2009, there has been a good deal of focus on employment statistics, one of the most important metrics policymakers use to gauge the overall strength of the economy. In the United States, the government measures unemployment using the Current Population Survey (CPS), which collects demographic and employment information from a wide range of Americans each month. In this exercise, we will employ the topics reviewed in the lectures as well as a few new techniques using the September 2013 version of this rich, nationally representative dataset (available online).

@@ -172,10 +172,10 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<div id="objective" class="section level2">
-<h2>Objective</h2>
+<ol style="list-style-type: decimal">
+<li>Objective</li>
+</ol>
 <p>A stock market is where buyers and sellers trade shares of a company, and is one of the most popular ways for individuals and companies to invest money. The size of the world stock market  is now estimated to be in the trillions. The largest stock market in the world is the New York Stock Exchange (NYSE), located in New York City. About 2,800 companies are listed on the NSYE. In this problem, we’ll look at the monthly stock prices of five of these companies: IBM, General Electric (GE), Procter and Gamble, Coca Cola, and Boeing. The data used in this problem comes from Infochimps.</p>
-</div>
 <div id="todo" class="section level2">
 <h2>TODO</h2>
 <p>Download and read the following files into R, using the read.csv function: IBMStock.csv, GEStock.csv, ProcterGambleStock.csv, CocaColaStock.csv, and BoeingStock.csv. (Do not open these files in any spreadsheet software before completing this problem because it might change the format of the Date field.) Call the data frames “IBM”, “GE”, “ProcterGamble”, “CocaCola”, and “Boeing”, respectively. Each data frame has two variables, described as follows: Date: the date of the stock price, always given as the first of the month. StockPrice: the average stock price of the company in the given month. In this problem, we’ll take a look at how the stock dynamics of these companies have changed over time</p>
@@ -206,18 +206,25 @@ The following objects are masked from 㤼㸱package:base㤼㸲:
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YTEgPSByZWFkLmNzdihcIi4uL2RhdGEvSUJNLmNzdlwiKVxuYGBgIn0= -->
-<pre class="r"><code>data1 = read.csv(&quot;../data/IBM.csv&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YTEgPSByZWFkLmNzdihcIi4uL2RhdGEvSUJNU3RvY2suY3N2XCIpXG5JQk0gPSB0YmxfZGYoZGF0YTEpXG5kYXRhMiA9IHJlYWQuY3N2KFwiLi4vZGF0YS9HRVN0b2NrLmNzdlwiKVxuR0UgPSB0YmxfZGYoZGF0YTIpXG5kYXRhMyA9IHJlYWQuY3N2KFwiLi4vZGF0YS9Qcm9jdGVyR2FtYmxlU3RvY2suY3N2XCIpXG5Qcm9jdGVyR2FtYmxlID0gdGJsX2RmKGRhdGEzKVxuZGF0YTQgPSByZWFkLmNzdihcIi4uL2RhdGEvQ29jYUNvbGFTdG9jay5jc3ZcIilcbkNvY2FDb2xhID0gdGJsX2RmKGRhdGE0KVxuZGF0YTUgPSByZWFkLmNzdihcIi4uL2RhdGEvQm9laW5nU3RvY2suY3N2XCIpXG5Cb2VpbmcgPSB0YmxfZGYoZGF0YTUpXG5gYGAifQ== -->
+<pre class="r"><code>data1 = read.csv(&quot;../data/IBMStock.csv&quot;)
+IBM = tbl_df(data1)
+data2 = read.csv(&quot;../data/GEStock.csv&quot;)
+GE = tbl_df(data2)
+data3 = read.csv(&quot;../data/ProcterGambleStock.csv&quot;)
+ProcterGamble = tbl_df(data3)
+data4 = read.csv(&quot;../data/CocaColaStock.csv&quot;)
+CocaCola = tbl_df(data4)
+data5 = read.csv(&quot;../data/BoeingStock.csv&quot;)
+Boeing = tbl_df(data5)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiY2Fubm90IG9wZW4gZmlsZSAnLi4vZGF0YS9JQk0uY3N2JzogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeUVycm9yIGluIGZpbGUoZmlsZSwgXCJydFwiKSA6IGNhbm5vdCBvcGVuIHRoZSBjb25uZWN0aW9uXG4ifQ== -->
-<pre><code>cannot open file '../data/IBM.csv': No such file or directoryError in file(file, &quot;rt&quot;) : cannot open the connection</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>1.1 - SUMMARY STATISTICS</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIyBPYmplY3RpdmUNCg0KQSBzdG9jayBtYXJrZXQgaXMgd2hlcmUgYnV5ZXJzIGFuZCBzZWxsZXJzIHRyYWRlIHNoYXJlcyBvZiBhIGNvbXBhbnksIGFuZCBpcyBvbmUgb2YgdGhlIG1vc3QgcG9wdWxhciB3YXlzIGZvciBpbmRpdmlkdWFscyBhbmQgY29tcGFuaWVzIHRvIGludmVzdCBtb25leS4gVGhlIHNpemUgb2YgdGhlIHdvcmxkIHN0b2NrIG1hcmtldCDCoGlzIG5vdyBlc3RpbWF0ZWQgdG8gYmUgaW4gdGhlIHRyaWxsaW9ucy4gVGhlIGxhcmdlc3Qgc3RvY2sgbWFya2V0IGluIHRoZSB3b3JsZCBpcyB0aGUgTmV3IFlvcmsgU3RvY2sgRXhjaGFuZ2UgKE5ZU0UpLCBsb2NhdGVkIGluIE5ldyBZb3JrIENpdHkuIEFib3V0IDIsODAwIGNvbXBhbmllcyBhcmUgbGlzdGVkIG9uIHRoZSBOU1lFLiBJbiB0aGlzIHByb2JsZW0sIHdlJ2xsIGxvb2sgYXQgdGhlIG1vbnRobHkgc3RvY2sgcHJpY2VzIG9mIGZpdmUgb2YgdGhlc2UgY29tcGFuaWVzOiBJQk0sIEdlbmVyYWwgRWxlY3RyaWMgKEdFKSwgUHJvY3RlciBhbmQgR2FtYmxlLCBDb2NhIENvbGEsIGFuZCBCb2VpbmcuIFRoZSBkYXRhIHVzZWQgaW4gdGhpcyBwcm9ibGVtIGNvbWVzIGZyb20gSW5mb2NoaW1wcy4NCg0KIyMgVE9ETw0KDQpEb3dubG9hZCBhbmQgcmVhZCB0aGUgZm9sbG93aW5nIGZpbGVzIGludG8gUiwgdXNpbmcgdGhlIHJlYWQuY3N2IGZ1bmN0aW9uOiBJQk1TdG9jay5jc3YsIEdFU3RvY2suY3N2LCBQcm9jdGVyR2FtYmxlU3RvY2suY3N2LCBDb2NhQ29sYVN0b2NrLmNzdiwgYW5kIEJvZWluZ1N0b2NrLmNzdi4gKERvIG5vdCBvcGVuIHRoZXNlIGZpbGVzIGluIGFueSBzcHJlYWRzaGVldCBzb2Z0d2FyZSBiZWZvcmUgY29tcGxldGluZyB0aGlzIHByb2JsZW0gYmVjYXVzZSBpdCBtaWdodCBjaGFuZ2UgdGhlIGZvcm1hdCBvZiB0aGUgRGF0ZSBmaWVsZC4pDQpDYWxsIHRoZSBkYXRhIGZyYW1lcyAiSUJNIiwgIkdFIiwgIlByb2N0ZXJHYW1ibGUiLCAiQ29jYUNvbGEiLCBhbmQgIkJvZWluZyIsIHJlc3BlY3RpdmVseS4gRWFjaCBkYXRhIGZyYW1lIGhhcyB0d28gdmFyaWFibGVzLCBkZXNjcmliZWQgYXMgZm9sbG93czoNCkRhdGU6IHRoZSBkYXRlIG9mIHRoZSBzdG9jayBwcmljZSwgYWx3YXlzIGdpdmVuIGFzIHRoZSBmaXJzdCBvZiB0aGUgbW9udGguIFN0b2NrUHJpY2U6IHRoZSBhdmVyYWdlIHN0b2NrIHByaWNlIG9mIHRoZSBjb21wYW55IGluIHRoZSBnaXZlbiBtb250aC4NCkluIHRoaXMgcHJvYmxlbSwgd2UnbGwgdGFrZSBhIGxvb2sgYXQgaG93IHRoZSBzdG9jayBkeW5hbWljcyBvZiB0aGVzZSBjb21wYW5pZXMgaGF2ZSBjaGFuZ2VkIG92ZXIgdGltZQ0KDQpgYGB7ciBpbXBvcnQgbGlicmFyaWVzfQ0KbGlicmFyeShkcGx5cikNCmxpYnJhcnkoZ2dwbG90MikNCmBgYA0KDQoNCmBgYHtyIHJlYWQgSUJNIGRhdGF9DQpkYXRhMSA9IHJlYWQuY3N2KCIuLi9kYXRhL0lCTVN0b2NrLmNzdiIpDQppYm0gPSB0YmxfZGYoZGF0YTEpDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoxLiBPYmplY3RpdmUNCg0KQSBzdG9jayBtYXJrZXQgaXMgd2hlcmUgYnV5ZXJzIGFuZCBzZWxsZXJzIHRyYWRlIHNoYXJlcyBvZiBhIGNvbXBhbnksIGFuZCBpcyBvbmUgb2YgdGhlIG1vc3QgcG9wdWxhciB3YXlzIGZvciBpbmRpdmlkdWFscyBhbmQgY29tcGFuaWVzIHRvIGludmVzdCBtb25leS4gVGhlIHNpemUgb2YgdGhlIHdvcmxkIHN0b2NrIG1hcmtldCDCoGlzIG5vdyBlc3RpbWF0ZWQgdG8gYmUgaW4gdGhlIHRyaWxsaW9ucy4gVGhlIGxhcmdlc3Qgc3RvY2sgbWFya2V0IGluIHRoZSB3b3JsZCBpcyB0aGUgTmV3IFlvcmsgU3RvY2sgRXhjaGFuZ2UgKE5ZU0UpLCBsb2NhdGVkIGluIE5ldyBZb3JrIENpdHkuIEFib3V0IDIsODAwIGNvbXBhbmllcyBhcmUgbGlzdGVkIG9uIHRoZSBOU1lFLiBJbiB0aGlzIHByb2JsZW0sIHdlJ2xsIGxvb2sgYXQgdGhlIG1vbnRobHkgc3RvY2sgcHJpY2VzIG9mIGZpdmUgb2YgdGhlc2UgY29tcGFuaWVzOiBJQk0sIEdlbmVyYWwgRWxlY3RyaWMgKEdFKSwgUHJvY3RlciBhbmQgR2FtYmxlLCBDb2NhIENvbGEsIGFuZCBCb2VpbmcuIFRoZSBkYXRhIHVzZWQgaW4gdGhpcyBwcm9ibGVtIGNvbWVzIGZyb20gSW5mb2NoaW1wcy4NCg0KIyMgVE9ETw0KDQpEb3dubG9hZCBhbmQgcmVhZCB0aGUgZm9sbG93aW5nIGZpbGVzIGludG8gUiwgdXNpbmcgdGhlIHJlYWQuY3N2IGZ1bmN0aW9uOiBJQk1TdG9jay5jc3YsIEdFU3RvY2suY3N2LCBQcm9jdGVyR2FtYmxlU3RvY2suY3N2LCBDb2NhQ29sYVN0b2NrLmNzdiwgYW5kIEJvZWluZ1N0b2NrLmNzdi4gKERvIG5vdCBvcGVuIHRoZXNlIGZpbGVzIGluIGFueSBzcHJlYWRzaGVldCBzb2Z0d2FyZSBiZWZvcmUgY29tcGxldGluZyB0aGlzIHByb2JsZW0gYmVjYXVzZSBpdCBtaWdodCBjaGFuZ2UgdGhlIGZvcm1hdCBvZiB0aGUgRGF0ZSBmaWVsZC4pDQpDYWxsIHRoZSBkYXRhIGZyYW1lcyAiSUJNIiwgIkdFIiwgIlByb2N0ZXJHYW1ibGUiLCAiQ29jYUNvbGEiLCBhbmQgIkJvZWluZyIsIHJlc3BlY3RpdmVseS4gRWFjaCBkYXRhIGZyYW1lIGhhcyB0d28gdmFyaWFibGVzLCBkZXNjcmliZWQgYXMgZm9sbG93czoNCkRhdGU6IHRoZSBkYXRlIG9mIHRoZSBzdG9jayBwcmljZSwgYWx3YXlzIGdpdmVuIGFzIHRoZSBmaXJzdCBvZiB0aGUgbW9udGguIFN0b2NrUHJpY2U6IHRoZSBhdmVyYWdlIHN0b2NrIHByaWNlIG9mIHRoZSBjb21wYW55IGluIHRoZSBnaXZlbiBtb250aC4NCkluIHRoaXMgcHJvYmxlbSwgd2UnbGwgdGFrZSBhIGxvb2sgYXQgaG93IHRoZSBzdG9jayBkeW5hbWljcyBvZiB0aGVzZSBjb21wYW5pZXMgaGF2ZSBjaGFuZ2VkIG92ZXIgdGltZQ0KDQpgYGB7ciBpbXBvcnQgbGlicmFyaWVzfQ0KbGlicmFyeShkcGx5cikNCmxpYnJhcnkoZ2dwbG90MikNCmBgYA0KDQoNCmBgYHtyIHJlYWQgSUJNLCBHRSwgUHJvY3RlciBhbmQgR2FtYmxlLCBDb2NhQ29sYSBhbmQgQm9laW5nIGRhdGF9DQpkYXRhMSA9IHJlYWQuY3N2KCIuLi9kYXRhL0lCTVN0b2NrLmNzdiIpDQpJQk0gPSB0YmxfZGYoZGF0YTEpDQpkYXRhMiA9IHJlYWQuY3N2KCIuLi9kYXRhL0dFU3RvY2suY3N2IikNCkdFID0gdGJsX2RmKGRhdGEyKQ0KZGF0YTMgPSByZWFkLmNzdigiLi4vZGF0YS9Qcm9jdGVyR2FtYmxlU3RvY2suY3N2IikNClByb2N0ZXJHYW1ibGUgPSB0YmxfZGYoZGF0YTMpDQpkYXRhNCA9IHJlYWQuY3N2KCIuLi9kYXRhL0NvY2FDb2xhU3RvY2suY3N2IikNCkNvY2FDb2xhID0gdGJsX2RmKGRhdGE0KQ0KZGF0YTUgPSByZWFkLmNzdigiLi4vZGF0YS9Cb2VpbmdTdG9jay5jc3YiKQ0KQm9laW5nID0gdGJsX2RmKGRhdGE1KQ0KYGBgDQoNCjEuMSAtIFNVTU1BUlkgU1RBVElTVElDUyANCg==</div>
 
 
 
