@@ -14,6 +14,11 @@ Call the data frames "IBM", "GE", "ProcterGamble", "CocaCola", and "Boeing", res
 Date: the date of the stock price, always given as the first of the month. StockPrice: the average stock price of the company in the given month.
 In this problem, we'll take a look at how the stock dynamics of these companies have changed over time
 
+
+```{r Change the local to English}
+Sys.setlocale("LC_ALL","English")
+```
+
 ```{r import libraries}
 library(dplyr)
 library(ggplot2)
@@ -34,3 +39,75 @@ Boeing = tbl_df(data5)
 ```
 
 1.1 - SUMMARY STATISTICS 
+
+Before working with these data sets, we need to convert the dates into a format that R can understand. Take a look at the structure of one of the datasets using the str function. Right now, the date variable is stored as a factor. We can convert this to a "Date" object in R by using the following five commands (one for each data set):
+
+```{r convert to Date object}
+IBM$Date = as.Date(IBM$Date, "%m/%d/%y")
+GE$Date = as.Date(GE$Date, "%m/%d/%y")
+CocaCola$Date = as.Date(CocaCola$Date, "%m/%d/%y")
+ProcterGamble$Date = as.Date(ProcterGamble$Date, "%m/%d/%y")
+Boeing$Date = as.Date(Boeing$Date, "%m/%d/%y")
+```
+
+The first argument to the as.Date function is the variable we want to convert, and the second argument is the format of the Date variable. We can just overwrite the original Date variable values with the output of this function. Now, answer the following questions using the str and summary functions.
+
+Our five datasets all have the same number of observations. How many observations are there in each data set?
+
+```{r how many observations}
+str(IBM)
+```
+
+1.2 - SUMMARY STATISTICS
+
+What is the earliest year in our datasets?
+
+```{r earliest year}
+summary(IBM)
+```
+
+ 1.3 - SUMMARY STATISTICS 
+ 
+ What is the latest year in our datasets?
+ 
+ 1.4 - SUMMARY STATISTICS 
+ 
+ What is the mean stock price of IBM over this time period?
+
+ 1.5 - SUMMARY STATISTICS 
+ 
+ What is the minimum stock price of General Electric (GE) over this time period?
+
+```{r minimum stock price for GE}
+summary(GE)
+```
+
+1.6 - SUMMARY STATISTICS 
+
+What is the maximum stock price of Coca-Cola over this time period?
+
+```{r maximum stock price for Coca-Cola}
+summary(CocaCola)
+```
+
+ 1.7 - SUMMARY STATISTICS 
+ 
+ What is the median stock price of Boeing over this time period?
+
+```{r median stock price of Boeing}
+summary(Boeing)
+```
+
+1.8 - SUMMARY STATISTICS 
+
+What is the standard deviation of the stock price of Procter & Gamble over this time period?
+
+```{r sd of the stock price of P&G}
+sd(ProcterGamble$StockPrice)
+```
+
+2.1 - VISUALIZING STOCK DYNAMICS 
+
+Let's plot the stock prices to see if we can visualize trends in stock prices during this time period. Using the plot function, plot the Date on the x-axis and the StockPrice on the y-axis, for Coca-Cola.
+This plots our observations as points, but we would really like to see a line instead, since this is a continuous time period. To do this, add the argument type="l" to your plot command, and re-generate the plot (the character is quotes is the letter l, for line). You should now see a line plot of the Coca-Cola stock price.
+
