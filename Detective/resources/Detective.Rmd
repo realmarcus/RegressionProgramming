@@ -1,6 +1,6 @@
 ---
 title: "Crime Notebook"
-output: html_notebook
+output: rmarkdown::github_document
 ---
 OBJECTIVE:
 AN ANALYTICAL DETECTIVE

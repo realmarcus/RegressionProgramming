@@ -36,29 +36,25 @@ When you save the notebook, an HTML file containing the code and output will be 
 ## LOADING AND SUMMARIZING THE DATASET 
 Load the dataset from CPSData.csv into a data frame called CPS, and view the dataset with the summary() and str() commands.
 
-```{r}
+```{r use libraries}
 library(dplyr)
 library(ggplot2)
 ```
 What is the local language?
-```{r}
-Sys.getlocale()
-```
-What is the local language?
-```{r}
+```{r query locale language}
 Sys.getlocale()
 ```
 Change the local to English
-```{r}
+```{r set local language}
 Sys.setlocale("LC_ALL","English")
 ```
 
-```{r}
+```{r load data}
 data <- read.csv("../data/CPSData.csv")
 CPS <- tbl_df(data) 
 ```
 How many interviewees are in the dataset?
-```{r}
+```{r analysis nb interviewees}
 str(CPS)
 ```
 
