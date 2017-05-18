@@ -159,3 +159,11 @@ sd(ProcterGamble$StockPrice)
     ## [1] 18.19414
 
 2.1 - VISUALIZING STOCK DYNAMICS
+
+Let's plot the stock prices to see if we can visualize trends in stock prices during this time period. Using the plot function, plot the Date on the x-axis and the StockPrice on the y-axis, for Coca-Cola. This plots our observations as points, but we would really like to see a line instead, since this is a continuous time period. To do this, add the argument type="l" to your plot command, and re-generate the plot (the character is quotes is the letter l, for line). You should now see a line plot of the Coca-Cola stock price.
+
+``` r
+plot(CocaCola$Date, CocaCola$StockPrice, type="l")
+```
+
+![](Stocks_files/figure-markdown_github/plot%20Stock%20price%20vs%20Date-1.png)
