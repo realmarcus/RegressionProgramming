@@ -283,10 +283,87 @@ abline(v=as.Date(c("2005-12-31")), lwd=2)
 4.1 - MONTHLY TRENDS (1/1 point) Lastly, let's see if stocks tend to be higher or lower during certain months. Use the tapply command to calculate the mean stock price of IBM, sorted by months. To sort by months, use: months(IBM$Date) as the second argument of the tapply function.
 
 ``` r
- tapply(IBM$StockPrice, months(IBM$Date), mean)
+mean(IBM$StockPrice)
 ```
 
-    ##     April    August  December  February   January      July      June 
-    ##  152.1168  140.1455  140.7593  152.6940  150.2384  139.0670  139.0907 
-    ##     March       May  November   October September 
-    ##  152.4327  151.5022  138.0187  137.3466  139.0885
+    ## [1] 144.375
+
+``` r
+sort(tapply(IBM$StockPrice, months(IBM$Date), mean))
+```
+
+    ##   October  November      July September      June    August  December 
+    ##  137.3466  138.0187  139.0670  139.0885  139.0907  140.1455  140.7593 
+    ##   January       May     April     March  February 
+    ##  150.2384  151.5022  152.1168  152.4327  152.6940
+
+MONTHLY TRENDS Repeat the tapply function from the previous problem for each of the other four companies, and use the output to answer the remaining questions. General Electric and Coca-Cola both have their highest average stock price in the same month. Which month is this?
+
+``` r
+sort(tapply(GE$StockPrice, months(GE$Date), mean))
+```
+
+    ##   October September      June    August      July  November  December 
+    ##  56.23897  56.23913  56.46844  56.50315  56.73349  57.28879  59.10217 
+    ##       May   January  February     March     April 
+    ##  60.87135  62.04511  62.52080  63.15055  64.48009
+
+``` r
+sort(tapply(CocaCola$StockPrice, months(CocaCola$Date), mean))
+```
+
+    ## September   October    August      July  November  December   January 
+    ##  57.60024  57.93887  58.88014  58.98346  59.10268  59.73223  60.36849 
+    ##  February      June       May     March     April 
+    ##  60.73475  60.81208  61.44358  62.07135  62.68888
+
+**April**
+
+MONTHLY TRENDS For the months of December and January, every company's average stock is higher in one month and lower in the other. In which month are the stock prices lower?
+
+``` r
+sort(tapply(IBM$StockPrice, months(IBM$Date), mean))
+```
+
+    ##   October  November      July September      June    August  December 
+    ##  137.3466  138.0187  139.0670  139.0885  139.0907  140.1455  140.7593 
+    ##   January       May     April     March  February 
+    ##  150.2384  151.5022  152.1168  152.4327  152.6940
+
+``` r
+sort(tapply(GE$StockPrice, months(GE$Date), mean))
+```
+
+    ##   October September      June    August      July  November  December 
+    ##  56.23897  56.23913  56.46844  56.50315  56.73349  57.28879  59.10217 
+    ##       May   January  February     March     April 
+    ##  60.87135  62.04511  62.52080  63.15055  64.48009
+
+``` r
+sort(tapply(ProcterGamble$StockPrice, months(ProcterGamble$Date), mean))
+```
+
+    ## September      July   October    August     March      June     April 
+    ##  76.62385  76.64556  76.67903  76.82266  77.34761  77.39275  77.68671 
+    ##       May  December  November  February   January 
+    ##  77.85958  78.29661  78.45610  79.02575  79.61798
+
+``` r
+sort(tapply(CocaCola$StockPrice, months(CocaCola$Date), mean))
+```
+
+    ## September   October    August      July  November  December   January 
+    ##  57.60024  57.93887  58.88014  58.98346  59.10268  59.73223  60.36849 
+    ##  February      June       May     March     April 
+    ##  60.73475  60.81208  61.44358  62.07135  62.68888
+
+``` r
+sort(tapply(Boeing$StockPrice, months(Boeing$Date), mean))
+```
+
+    ##  November   October  December September   January      July    August 
+    ##  45.14990  45.21603  46.17315  46.30485  46.51097  46.55360  46.86311 
+    ##     March  February     April      June       May 
+    ##  46.88208  46.89223  47.04686  47.38525  48.13716
+
+**December**

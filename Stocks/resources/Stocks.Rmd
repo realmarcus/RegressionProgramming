@@ -235,7 +235,34 @@ months(IBM$Date)
 as the second argument of the tapply function.
 
 ```{r}
- tapply(IBM$StockPrice, months(IBM$Date), mean)
+mean(IBM$StockPrice)
+sort(tapply(IBM$StockPrice, months(IBM$Date), mean))
 ```
+
+
+MONTHLY TRENDS
+Repeat the tapply function from the previous problem for each of the other four companies, and use the output to answer the remaining questions.
+General Electric and Coca-Cola both have their highest average stock price in the same month. Which month is this?
+
+```{r}
+sort(tapply(GE$StockPrice, months(GE$Date), mean))
+sort(tapply(CocaCola$StockPrice, months(CocaCola$Date), mean))
+```
+
+
+**April**
+
+MONTHLY TRENDS
+For the months of December and January, every company's average stock is higher in one month and lower in the other. In which month are the stock prices lower?
+
+```{r}
+sort(tapply(IBM$StockPrice, months(IBM$Date), mean))
+sort(tapply(GE$StockPrice, months(GE$Date), mean))
+sort(tapply(ProcterGamble$StockPrice, months(ProcterGamble$Date), mean))
+sort(tapply(CocaCola$StockPrice, months(CocaCola$Date), mean))
+sort(tapply(Boeing$StockPrice, months(Boeing$Date), mean))
+```
+
+**December**
 
 
