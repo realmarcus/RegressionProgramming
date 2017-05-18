@@ -166,4 +166,127 @@ Let's plot the stock prices to see if we can visualize trends in stock prices du
 plot(CocaCola$Date, CocaCola$StockPrice, type="l")
 ```
 
-![](Stocks_files/figure-markdown_github/plot%20Stock%20price%20vs%20Date-1.png)
+![](Stocks_files/figure-markdown_github/plot1%20Stock%20price%20vs%20Date-1.png)
+
+Around what year did Coca-Cola has its highest stock price in this time period?
+
+**1973**
+
+Around what year did Coca-Cola has its lowest stock price in this time period?
+
+**1980**
+
+2.2 - VISUALIZING STOCK DYNAMICS
+
+Now, let's add the line for Procter & Gamble too. You can add a line to a plot in R by using the lines function instead of the plot function. Keeping the plot for Coca-Cola open, type in your R console:
+
+Unfortunately, it's hard to tell which line is which. Let's fix this by giving each line a color. First, re-run the plot command for Coca-Cola, but add the argument col="red". You should see the plot for Coca-Cola show up again, but this time in red. Now, let's add the Procter & Gamble line (using the lines function like we did before), adding the argument col="blue". You should now see in your plot the Coca-Cola stock price in red, and the Procter & Gamble stock price in blue.
+
+``` r
+plot(CocaCola$Date, CocaCola$StockPrice, type="l",col="red")
+lines(ProcterGamble$Date, ProcterGamble$StockPrice,col="blue")
+```
+
+![](Stocks_files/figure-markdown_github/plot2%20add%20a%20line%20and%20color-1.png)
+
+As an alternative choice to changing the colors, you could instead change the line type of the Procter & Gamble line by adding the argument lty=2. This will make the Procter & Gamble line dashed. Using this plot, answer the following questions.
+
+``` r
+plot(CocaCola$Date, CocaCola$StockPrice, type="l",col="red",lty=1)
+lines(ProcterGamble$Date, ProcterGamble$StockPrice,col="blue",lty=2)
+abline(v=as.Date(c("2000-03-01")), lwd=2)
+```
+
+![](Stocks_files/figure-markdown_github/plot3%20add%20line%20type-1.png)
+
+In March of 2000, the technology bubble burst, and a stock market crash occurred. According to this plot, which company's stock dropped more?
+
+**Procter and Gamble**
+
+in your R console, with the plot still open. This generates a vertical line at the date March 1, 2000. The argument lwd=2 makes the line a little thicker. You can change the date in this command to generate the vertical line in different locations.
+
+2.3 - VISUALIZING STOCK DYNAMICS
+
+Answer these questions using the plot you generated in the previous problem. Around 1983, the stock for one of these companies (Coca-Cola or Procter and Gamble) was going up, while the other was going down. Which one was going up?
+
+``` r
+plot(CocaCola$Date, CocaCola$StockPrice, type="l",col="red",lty=1)
+lines(ProcterGamble$Date, ProcterGamble$StockPrice,col="blue",lty=2)
+abline(v=as.Date(c("1983-01-01")), lwd=2)
+```
+
+![](Stocks_files/figure-markdown_github/plot4%20around%201983-1.png)
+
+**Coca-Cola**
+
+In the time period shown in the plot, which stock generally has lower values?
+
+**Coca-Cola**
+
+3.1 - VISUALIZING STOCK DYNAMICS 1995-2005 Let's take a look at how the stock prices changed from 1995-2005 for all five companies. In your R console, start by typing the following plot command:
+
+``` r
+plot(CocaCola$Date[301:432], CocaCola$StockPrice[301:432], type="l", col="red", ylim=c(0,210))
+```
+
+![](Stocks_files/figure-markdown_github/plot5%20period%201995-2005-1.png)
+
+This will plot the CocaCola stock prices from 1995 through 2005, which are the observations numbered from 301 to 432. The additional argument, ylim=c(0,210), makes the y-axis range from 0 to 210. This will allow us to see all of the stock values when we add in the other companies.
+
+Now, use the lines function to add in the other four companies, remembering to only plot the observations from 1995 to 2005, or \[301:432\]. You don't need the "type" or "ylim" arguments for the lines function, but remember to make each company a different color so that you can tell them apart. Some color options are "red", "blue", "green", "purple", "orange", and "black". To see all of the color options in R, type colors() in your R console.
+
+``` r
+plot(CocaCola$Date[301:432], CocaCola$StockPrice[301:432], type="l", col="red", ylim=c(0,210))
+lines(ProcterGamble$Date, ProcterGamble$StockPrice,col="blue",lty=2)
+lines(IBM$Date, IBM$StockPrice,col="green",lty=3)
+lines(Boeing$Date, Boeing$StockPrice,col="purple",lty=4)
+lines(GE$Date, GE$StockPrice,col="orange",lty=5)
+abline(v=as.Date(c("2000-03-01")), lwd=2)
+```
+
+![](Stocks_files/figure-markdown_github/plot6%20All%20companies-1.png) Which stock fell the most right after the technology bubble burst in March 2000?
+
+**GE**
+
+Which stock reaches the highest value in the time period 1995-2005?
+
+**IBM**
+
+3.3 - VISUALIZING STOCK DYNAMICS 1995-2005 In October of 1997, there was a global stock market crash that was caused by an economic crisis in Asia. Comparing September 1997 to November 1997, which companies saw a decreasing trend in their stock price?
+
+``` r
+plot(CocaCola$Date[301:432], CocaCola$StockPrice[301:432], type="l", col="red", ylim=c(0,210))
+lines(ProcterGamble$Date, ProcterGamble$StockPrice,col="blue",lty=2)
+lines(IBM$Date, IBM$StockPrice,col="green",lty=3)
+lines(Boeing$Date, Boeing$StockPrice,col="purple",lty=4)
+lines(GE$Date, GE$StockPrice,col="orange",lty=5)
+abline(v=as.Date(c("1997-09-01")), lwd=2)
+abline(v=as.Date(c("1997-11-01")), lwd=2)
+```
+
+![](Stocks_files/figure-markdown_github/plot7-1.png) 3.4 - VISUALIZING STOCK DYNAMICS 1995-2005 (1/1 point) In the last two years of this time period (2004 and 2005) which stock seems to be performing the best, in terms of increasing stock price?
+
+**Boeing**
+
+``` r
+plot(CocaCola$Date[301:432], CocaCola$StockPrice[301:432], type="l", col="red", ylim=c(0,210))
+lines(ProcterGamble$Date, ProcterGamble$StockPrice,col="blue",lty=2)
+lines(IBM$Date, IBM$StockPrice,col="green",lty=3)
+lines(Boeing$Date, Boeing$StockPrice,col="purple",lty=4)
+lines(GE$Date, GE$StockPrice,col="orange",lty=5)
+abline(v=as.Date(c("2004-01-01")), lwd=2)
+abline(v=as.Date(c("2005-12-31")), lwd=2)
+```
+
+![](Stocks_files/figure-markdown_github/plot8-1.png)
+
+4.1 - MONTHLY TRENDS (1/1 point) Lastly, let's see if stocks tend to be higher or lower during certain months. Use the tapply command to calculate the mean stock price of IBM, sorted by months. To sort by months, use: months(IBM$Date) as the second argument of the tapply function.
+
+``` r
+ tapply(IBM$StockPrice, months(IBM$Date), mean)
+```
+
+    ##     April    August  December  February   January      July      June 
+    ##  152.1168  140.1455  140.7593  152.6940  150.2384  139.0670  139.0907 
+    ##     March       May  November   October September 
+    ##  152.4327  151.5022  138.0187  137.3466  139.0885
