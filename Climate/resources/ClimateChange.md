@@ -51,3 +51,6 @@ the total solar irradiance (TSI) in W/m (the rate at which the sun's energy is d
 ### MEI:
 
 multivariate El Nino Southern Oscillation index (MEI), a measure of the strength of the El Nino/La Nina-Southern Oscillation (a weather effect in the Pacific Ocean that affects global temperatures). This data comes from the ESRL/NOAA Physical Sciences Division.
+
+1.1 - CREATING OUR FIRST MODEL
+==============================

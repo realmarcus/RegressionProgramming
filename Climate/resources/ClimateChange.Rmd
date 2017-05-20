@@ -2,12 +2,13 @@
 title: "R Notebook"
 output: github_document
 ---
-## OBJECTIVE
+#CLIMATE CHANGE
+##OBJECTIVE
 There have been many studies documenting that the average global temperature has been increasing over the last century. The consequences of a continued rise in global temperature will be dire. Rising sea levels and an increased frequency of extreme weather events will affect billions of people.
 
 In this problem, we will attempt to study the relationship between average global temperature and several other factors.
 
-## DIRECTIVE
+##DIRECTIVE
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
@@ -41,3 +42,25 @@ the total solar irradiance (TSI) in W/m (the rate at which the sun's energy is d
 
 ###MEI: 
 multivariate El Nino Southern Oscillation index (MEI), a measure of the strength of the El Nino/La Nina-Southern Oscillation (a weather effect in the Pacific Ocean that affects global temperatures). This data comes from the ESRL/NOAA Physical Sciences Division.
+
+## 1.1 - CREATING OUR FIRST MODEL 
+
+We are interested in how changes in these variables affect future temperatures, as well as how well these variables explain temperature changes so far. To do this, first read the dataset climate_change.csv into R.
+
+Then, split the data into a training set, consisting of all the observations up to and including 2006, and a testing set consisting of the remaining years (hint: use subset). A training set refers to the data that will be used to build the model (this is the data we give to the lm() function), and a testing set refers to the data we will use to test our predictive ability.
+
+Next, build a linear regression model to predict the dependent variable Temp, using MEI, CO2, CH4, N2O, CFC.11, CFC.12, TSI, and Aerosols as independent variables (Year and Month should NOT be used in the model). Use the training set to build the model.
+
+```{r import libraries}
+library(dplyr)
+library(ggplot2)
+```
+
+
+```{r Read the dataset}
+data <- read.csv("../data/climate_change.csv")
+df <- tbl_df(climate)
+tr <- subset(df,subset = Year <=2006)
+test <- subset(df,subset = Year > 2006)
+```
+
