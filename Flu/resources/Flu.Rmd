@@ -1,0 +1,80 @@
+---
+title: "FLU"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The csv file FluTrain.csv aggregates this data from January 1, 2004 until December 31, 2011 as follows:
+"Week" - The range of dates represented by this observation, in year/month/day format.
+"ILI" - This column lists the percentage of ILI-related physician visits for the corresponding week.
+"Queries" - This column lists the fraction of queries that are ILI-related for the corresponding week, adjusted to be between 0 and 1 (higher values correspond to more ILI-related search queries).
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+Before applying analytics tools on the training set, we first need to understand the data at hand. 
+
+Load "FluTrain.csv" into a data frame called FluTrain.
+
+```{r}
+df <- read.csv("../data/FluTrain.csv")
+```
+Looking at the time period 2004-2011, which week corresponds to the highest percentage of ILIrelated physician visits? Select the day of the month corresponding to the start of this week.
+
+```{r}
+FluTrain <- tbl_df(df)
+which.max(FluTrain$ILI)
+FluTrain$Week[303]
+```
+Which week corresponds to the highest percentage of ILI-related query fraction?
+
+```{r}
+plotwhich.max(FluTrain$Queries)
+FluTrain$Week[303]
+```
+
+```{r}
+hist(FluTrain$ILI)
+```
+
+Most of the ILI values are small, with a relatively small number of much larger values (in statistics, this sort of data is called "skew right"). 
+
+
+When handling a skewed dependent variable, it is often useful to predict the logarithm of the dependent variable instead of the dependent variable itself -- this prevents the small number of unusually large or small observations from having an undue influence on the sum of squared errors of predictive models. In this problem, we will predict the natural log of the ILI variable, which can be computed in R using the log() function.
+Plot the natural logarithm of ILI versus Queries. What does the plot suggest?.
+
+```{r}
+ plot(FluTrain$Queries, log(FluTrain$ILI))
+```
+
+There is a positive, linear relationship between log(ILI) and Queries
+
+Based on the plot we just made, it seems that a linear regression model could be a good modeling choice. Based on our understanding of the data from the previous subproblem, which model best describes our estimation problem?
+
+log(ILI) = intercept + coefficient x Queries, where the coefficient is positive 
+
+Let's call the regression model from the previous problem (Problem 2.1) FluTrend1 and run it in R. Hint: to take the logarithm of a variable Var in a regression equation, you simply use log(Var) when specifying the formula to the lm() function.
+What is the training set R-squared value for FluTrend1 model (the "Multiple R-squared")?
+
+```{r}
+FluTrend1 = lm(log(ILI)~Queries, data=FluTrain)
+summary(FluTrend1)
+```
+
+
+
+
+
+
+
