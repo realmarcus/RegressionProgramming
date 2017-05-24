@@ -1,0 +1,91 @@
+---
+title: "Linear Random"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+## Context
+This is probably the dumbest dataset on Kaggle. The whole point is, however, to provide a common dataset for linear regression. Although such a dataset can easily be generated in Excel with random numbers, results would not be comparable.
+
+## Content
+The training dataset is a CSV file with 700 data pairs (x,y). The x-values are numbers between 0 and 100. The corresponding y-values have been generated using the Excel function NORMINV(RAND(), x, 3). Consequently, the best estimate for y should be x. The test dataset is a CSV file with 300 data pairs.
+
+## Load
+
+```{r}
+library(dplyr)
+library(ggplot2)
+datatrain = read.csv("../data/train.csv")
+train = tbl_df(datatrain)
+datatest = read.csv("../data/test.csv")
+test = tbl_df(datatest)
+```
+
+## Analysis training
+```{r}
+train <- na.omit(train)
+str(train)
+summary(train)
+cor(train)
+```
+
+## Visualisation
+
+```{r}
+plot(x = train$x,y = train$y,type = "p",col="red",main="Train y vs x")
+```
+
+## Analysis test
+```{r}
+test <- na.omit(test)
+str(test)
+summary(test)
+cor(test)
+```
+
+## Visualisation
+
+```{r}
+plot(x = test$x,y = test$y,type = "p",col="blue",main="Test y vs x")
+```
+
+```{r Linear Model}
+model = lm(y ~ x,data = train)
+summary(model)
+```
+
+```{r Predictions}
+predTest = predict(model, newdata=test)
+summary(predTest)
+```
+
+What is the sum of squared errors (SSE) of lmScore on the testing set?
+
+```{r}
+SSE = sum((predTest-test$y)^2)
+```
+
+What is the root-mean squared error (RMSE) of lmScore on the testing set?
+
+```{r}
+RMSE = sqrt(mean((predTest-test$y)^2))
+```
+
+What is the predicted test score used in the baseline model? 
+```{r}
+baseline = mean(test$y)
+```
+
+What is the sum of squared errors of the baseline model on the testing set?
+```{r}
+SST = sum((baseline-test$y)^2)
+```
+
+What is the test-set R-squared value of model?
+
+```{r}
+testSetR2 =  1-SSE/SST
+testSetR = sqrt(testSetR2)
+```
+
